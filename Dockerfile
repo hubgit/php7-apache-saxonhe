@@ -31,7 +31,7 @@ RUN apt-get update \
     && rm -r /opt/saxon/Saxon.C.API \
     ## clean
     && apt-get clean \
-    && apt-get remove -y default-jdk-headless default-jre-headless unzip wget \
+    && apt-get remove -y default-jdk-headless unzip wget \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/
     

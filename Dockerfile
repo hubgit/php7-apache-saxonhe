@@ -14,7 +14,7 @@ RUN mkdir -p /usr/share/man/man1
 
 RUN apt-get update \
     ## dependencies
-    && apt-get -y install ${jdk} unzip wget \
+    && apt-get install -y --no-install-recommends ${jdk} unzip wget \
     ## fetch and install
     && wget https://www.saxonica.com/saxon-c/${saxon}.zip \
     && unzip ${saxon}.zip -d saxon \

@@ -22,7 +22,7 @@ RUN apt-get update \
     && rm ${saxon}.zip \
     && rm -r saxon \
     ## prepare
-    && ln -s /opt/saxon/libsaxonhec64.so /usr/lib/ \
+    && ln -s /opt/saxon/libsaxonhec.so /usr/lib/ \
     && ln -s /opt/saxon/rt /usr/lib/ \
     && ln -s ${jvm}/include/linux/jni_md.h ${jvm}/include/ \
     ## build

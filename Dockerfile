@@ -3,7 +3,7 @@ FROM php:7-apache
 ARG DEBIAN_FRONTEND=noninteractive
 
 # edit this to use a different version of Saxon
-ARG saxon='libsaxon-HEC-setup64-v1.1.0'
+ARG saxon='libsaxon-HEC-setup64-v1.1.2'
 
 ARG jdk='openjdk-8-jdk-headless'
 

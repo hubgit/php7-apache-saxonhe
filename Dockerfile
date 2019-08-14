@@ -12,14 +12,18 @@ ARG jvm='/usr/lib/jvm/java-11-openjdk-amd64'
 # needed for default-jre-headless
 RUN mkdir -p /usr/share/man/man1
 
+# patches for catalog support
+COPY patches /tmp/patches
+
 RUN apt-get update \
     ## dependencies
     && apt-get install -y --no-install-recommends ${jdk} unzip wget libxml-commons-resolver1.1-java \
-    ## fetch and install
+    ## fetch
     && wget https://www.saxonica.com/saxon-c/${saxon}.zip \
     && unzip ${saxon}.zip -d saxon \
-    && saxon/${saxon} -batch -dest /opt/saxon \
     && rm ${saxon}.zip \
+    ## install
+    && saxon/${saxon} -batch -dest /opt/saxon \
     && rm -r saxon \
     ## prepare
     && ln -s /opt/saxon/libsaxonhec.so /usr/lib/ \
@@ -27,6 +31,8 @@ RUN apt-get update \
     && ln -s ${jvm}/include/linux/jni_md.h ${jvm}/include/ \
     ## build
     && cd /opt/saxon/Saxon.C.API \
+    ## patches for catalog support
+    && cp /tmp/patches/* ./ \
     && phpize \
     && ./configure --enable-saxon CPPFLAGS="-I${jvm}/include" \
     && make \

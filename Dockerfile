@@ -3,7 +3,7 @@ FROM php:7.3.8-apache-buster
 ARG DEBIAN_FRONTEND=noninteractive
 
 # edit this to use a different version of Saxon
-ARG saxon='libsaxon-HEC-setup64-v1.1.2'
+ARG saxon='libsaxon-HEC-setup64-v1.2.0'
 
 ARG jdk='openjdk-11-jdk-headless'
 
@@ -11,9 +11,6 @@ ARG jvm='/usr/lib/jvm/java-11-openjdk-amd64'
 
 # needed for default-jre-headless
 RUN mkdir -p /usr/share/man/man1
-
-# patches for catalog support
-COPY patches /tmp/patches
 
 RUN apt-get update \
     ## dependencies
@@ -31,8 +28,6 @@ RUN apt-get update \
     && ln -s ${jvm}/include/linux/jni_md.h ${jvm}/include/ \
     ## build
     && cd /opt/saxon/Saxon.C.API \
-    ## patches for catalog support
-    && cp /tmp/patches/* ./ \
     && phpize \
     && ./configure --enable-saxon CPPFLAGS="-I${jvm}/include" \
     && make \

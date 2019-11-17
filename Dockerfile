@@ -3,7 +3,7 @@ FROM php:7-apache-buster
 ARG DEBIAN_FRONTEND=noninteractive
 
 # edit this to use a different version of Saxon
-ARG saxon='libsaxon-HEC-setup64-v1.2.0'
+ARG saxon='libsaxon-HEC-setup64-v1.2.1'
 
 ARG jdk='openjdk-11-jdk-headless'
 

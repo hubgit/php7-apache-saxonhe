@@ -21,6 +21,8 @@ WORKDIR /opt
 RUN curl https://www.saxonica.com/download/libsaxon-HEC-setup64-v${saxon}.zip --output saxon.zip
 RUN unzip saxon.zip -d saxon
 
+COPY ./patch/SaxonProcessor.cpp ./saxon/libsaxon-HEC-${saxon}/Saxon.C.API/SaxonProcessor.cpp
+
 #ENV SAXONC_HOME=/usr/lib
 
 ## prepare
